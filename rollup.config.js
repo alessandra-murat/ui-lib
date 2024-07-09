@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import postcss from 'rollup-plugin-postcss';
 
 
 const pkg = require('./package.json');
@@ -14,12 +15,12 @@ export default [
       {
         file: pkg.main,
         format: 'cjs',
-        sourcemap: true, // Adicionar sourcemap aqui
+        sourcemap: true, 
       },
       {
         file: pkg.module,
         format: 'esm',
-        sourcemap: true, // Adicionar sourcemap aqui
+        sourcemap: true, 
       },
     ],
     plugins: [
@@ -29,13 +30,22 @@ export default [
       tsconfig: './tsconfig.json',
       declaration: true,
       declarationDir: 'dist',
-   })
+      }),
+       postcss({
+      extract: true,
+      minimize: true,
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    }),
     ],
   },
   {
-    // Se precisar gerar um arquivo .d.ts separado
-    input: 'dist/esm/index.d.ts', // Verificar se esta entrada faz sentido para o Rollup
+
+    input: 'dist/esm/index.d.ts', 
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts.default()]
+    plugins: [dts.default()],
+     external: [/\.css$/],
   },
 ];

@@ -7,7 +7,7 @@ export interface OwnProps extends InputHTMLAttributes<HTMLButtonElement> {
 const ButtonWrapper = (props: OwnProps) => {
   return (
     <div>
-      <button>{props.label}</button>
+      <button className="bg-red-500">{props.label}</button>
     </div>
   );
 };
