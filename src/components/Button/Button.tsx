@@ -1,15 +1,11 @@
-import React, { InputHTMLAttributes } from "react";
+import { ButtonRoot } from "./ButtonRoot";
+import ButtonIcon from "./ButtonIcon";
+import ButtonText from "./ButtonText";
 
-export interface OwnProps extends InputHTMLAttributes<HTMLButtonElement> {
-  label: string;
-}
-
-const ButtonWrapper = (props: OwnProps) => {
-  return (
-    <div>
-      <button className="bg-red-500">{props.label}</button>
-    </div>
-  );
+const Button = {
+  Root: ButtonRoot,
+  Icon: ButtonIcon,
+  Text: ButtonText,
 };
 
-export default ButtonWrapper;
+export default Button;

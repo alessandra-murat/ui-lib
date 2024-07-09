@@ -40,6 +40,13 @@ export default [
       ],
     }),
     ],
+    external: [
+      'react',
+      'react-dom',
+      'react-router-dom', // Adicionado react-router-dom como externo
+      'class-variance-authority', // Adicionado class-variance-authority como externo
+      'tailwind-merge', // Adicionado tailwind-merge como externo
+    ],
   },
   {
 

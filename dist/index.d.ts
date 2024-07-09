@@ -1,8 +1,28 @@
-import React, { InputHTMLAttributes } from 'react';
+import * as React from 'react';
+import * as class_variance_authority_dist_types from 'class-variance-authority/dist/types';
+import { VariantProps } from 'class-variance-authority';
 
-interface OwnProps extends InputHTMLAttributes<HTMLButtonElement> {
-    label: string;
+interface ButtonTextProps {
+    text: string;
 }
-declare const ButtonWrapper: (props: OwnProps) => React.JSX.Element;
 
-export { ButtonWrapper as Button };
+interface ButtonIconProps {
+    name: string;
+}
+
+declare const buttonVariants: (props?: ({
+    variant?: "filled" | "outlined" | "borderless" | null | undefined;
+    size?: "sm" | "md" | "lg" | null | undefined;
+    shape?: "square" | "rounded" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+    href?: string;
+}
+
+declare const Button: {
+    Root: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>>;
+    Icon: React.FC<ButtonIconProps>;
+    Text: ({ text }: ButtonTextProps) => React.JSX.Element;
+};
+
+export { Button };
